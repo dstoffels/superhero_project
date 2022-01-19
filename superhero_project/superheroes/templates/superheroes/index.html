@@ -7,9 +7,14 @@
 		<title>Superhero Index</title>
 	</head>
 	<body>
+		<a href="{% url 'superheroes:create' %}">Add Hero</a>
 		<ul>
 			{% for hero in all_heroes %}
-			<li>{{hero.name}}: {{hero.catchphrase}}</li>
+			<li>
+				<a href="{% url 'superheroes:detail' hero.id %}">
+					{{hero.name}} ({{hero.alter_ego}})
+				</a>
+			</li>
 			{% endfor %}
 		</ul>
 	</body>

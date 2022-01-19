@@ -1,4 +1,6 @@
-import imp
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
+
 from django.shortcuts import render
 from .models import Superhero
 
@@ -14,4 +16,15 @@ def detail(request, hero_id):
   return render(request, 'superheroes/detail.html', context)
 
 def create(request):
-  return render(request, 'superheroes/create.html')
+  if request.method == 'POST':
+    get = request.POST.get
+    name = get('name')
+    alter_ego = get('alter_ego')
+    primary_ability = get('primary_ability')
+    secondary_ability = get('secondary_ability')
+    catchphrase = get('catchphrase')
+    new_hero = Superhero(name=name, alter_ego=alter_ego, primary_ability=primary_ability, secondary_ability=secondary_ability,catchphrase=catchphrase)
+    new_hero.save()
+    return HttpResponseRedirect(reverse('superheroes:index'))
+  else:
+    return render(request, 'superheroes/create.html')
