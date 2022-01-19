@@ -12,5 +12,8 @@
 		<p>Primary Ability: {{hero.primary_ability}}</p>
 		<p>Secondary Ability: {{hero.secondary_ability}}</p>
 		<p>Catchphrase: {{hero.catchphrase}}</p>
+		<button>
+			<a href="{% url 'superheroes:edit' hero.id %}">EDIT</a>
+		</button>
 	</body>
 </html>

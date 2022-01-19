@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Create New Hero</title>
+	</head>
+	<body>
+		<form action="{% url 'superheroes:edit' hero.id %}" method="post">
+			{% csrf_token %} Hero Name:
+			<input required type="text" name="name" id="name" value="{{hero.name}}"/><br />
+
+			Alter Ego: <input required type="text" name="alter_ego" id="alter_ego" value="{{hero.alter_ego}}"/><br />
+
+			Primary Ability:
+			<input required  type="text" name="primary_ability" id="primary_ability" value="{{hero.primary_ability}}"/><br />
+
+			Secondary Ability:
+			<input required
+        value="{{hero.secondary_ability}}"
+				type="text"
+				name="secondary_ability"
+				id="secondary_ability"
+			/><br />
+
+			Catchphrase:
+			<input required type="text" name="catchphrase" id="catchphrase" value="{{hero.catchphrase}}" /><br />
+      
+      <input type="submit" value="Save!"></input>
+      <button type="button"><a href="{% url 'superheroes:detail' hero.id %}">Cancel</a></button>
+		</form>
+	</body>
+</html>
