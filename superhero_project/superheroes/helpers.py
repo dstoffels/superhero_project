@@ -7,7 +7,7 @@ def get_hero_context(hero_id):
 
 def save_hero_details(request, hero_id=None):
   hero = Superhero.objects.get(pk=hero_id) if hero_id else Superhero()
-  hero.set(request.POST)
+  hero.set(request)
   hero.save()
 
 def delete_hero(hero_id):

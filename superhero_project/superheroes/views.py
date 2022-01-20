@@ -1,6 +1,5 @@
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-
 from django.shortcuts import render
 
 from .helpers import delete_hero, get_hero_context, save_hero_details
