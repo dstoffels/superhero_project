@@ -1,21 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+			integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+			crossorigin="anonymous"
+		/>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Superhero Index</title>
 	</head>
 	<body>
-		<a href="{% url 'superheroes:create' %}">Add Hero</a>
-		<ul>
-			{% for hero in all_heroes %}
-			<li>
-				<a href="{% url 'superheroes:detail' hero.id %}">
-					{{hero.name}} <i>({{hero.alter_ego}})</i>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<ul class="nav navbar-nav">
+					<li class="active">
+						<a class="navbar-left" href="{% url 'superheroes:index' %}">
+							SUPERHERO INDEX
+						</a>
+					</li>
+					<li>
+						<a href="{% url 'superheroes:create' %}">ADD HERO</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<div class="container">
+			<ul class="list-group">
+				{% for hero in all_heroes %}
+				<a
+					href="{% url 'superheroes:detail' hero.id %}"
+					style="
+						color: black;
+						font-size: 16px;
+						font-weight: 600;
+						text-align: middle;
+					"
+				>
+					<li class="list-group-item">
+						<div class="row">
+							<div class="col-md-2">
+								<img
+									src="/media/{{hero.image}}"
+									alt=""
+									style="max-height: 50px; display: inline-block"
+								/>
+							</div>
+							<div class="col-md-10" style="margin-top: 10px">
+								{{hero.name}} <i>({{hero.alter_ego}})</i>
+							</div>
+						</div>
+					</li>
 				</a>
-			</li>
-			{% endfor %}
-		</ul>
+				{% endfor %}
+			</ul>
+		</div>
 	</body>
 </html>

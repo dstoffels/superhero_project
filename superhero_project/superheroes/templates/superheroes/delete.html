@@ -1,19 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+			integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+			crossorigin="anonymous"
+		/>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>DELETE {{hero.name}}</title>
 	</head>
 	<body>
-		<h1>Are you sure you want to delete {{hero.name}}??</h1>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<ul class="nav navbar-nav">
+					<li class="active">
+						<a class="navbar-left" href="{% url 'superheroes:index' %}">
+							SUPERHERO INDEX
+						</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<div class="container">
+		<h3>Are you sure you want to delete {{hero.name}}??</h3>
 		<form action="{% url 'superheroes:delete' hero.id %}" method="post">
 			{% csrf_token %}
-			<input type="submit" value="YES" />
-			<button type="button">
-				<a href="{% url 'superheroes:detail' hero.id %}">Cancel</a>
-			</button>
+
+				<div class="form-group">
+					<button class="btn btn-danger" type="submit">YES</button>
+					<a
+					class="btn btn-primary"
+					href="{% url 'superheroes:detail' hero.id %}"
+					>
+					NO
+				</a>
+			</div>
 		</form>
 	</body>
 </html>

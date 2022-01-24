@@ -1,23 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+			integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+			crossorigin="anonymous"
+		/>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>{{hero.name}}</title>
 	</head>
 	<body>
-		<h1>{{hero.name}}</h1>
-		<h2><i> {{hero.alter_ego}} </i></h2>
-		<img src="/media/{{hero.image}}" alt="" />
-		<p>Primary Ability: {{hero.primary_ability}}</p>
-		<p>Secondary Ability: {{hero.secondary_ability}}</p>
-		<p>Catchphrase: {{hero.catchphrase}}</p>
-		<button>
-			<a href="{% url 'superheroes:edit' hero.id %}">EDIT</a>
-		</button>
-		<button>
-			<a href="{% url 'superheroes:delete' hero.id %}">DELETE</a>
-		</button>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<ul class="nav navbar-nav">
+					<li>
+						<a class="navbar-left" href="{% url 'superheroes:index' %}">
+							SUPERHERO INDEX
+						</a>
+					</li>
+					<li class="active">
+						<a href="{% url 'superheroes:edit' hero.id %}"> EDIT HERO </a>
+					</li>
+					<li class="active">
+						<a href="{% url 'superheroes:delete' hero.id %}"> DELETE HERO </a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+		<div class="container">
+			<img
+				src="/media/{{hero.image}}"
+				alt=""
+				class="pull-right"
+				style="max-width: 400px"
+			/>
+			<h1>{{hero.name}}</h1>
+			<h3><i> {{hero.alter_ego}} </i></h3>
+			<p><strong> Primary Ability: </strong> {{hero.primary_ability}}</p>
+			<p>
+				<strong> Secondary Ability: </strong>
+				{{hero.secondary_ability}}
+			</p>
+			<p>
+				<strong> Catchphrase: </strong>
+				{{hero.catchphrase}}
+			</p>
+		</div>
 	</body>
 </html>

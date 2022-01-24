@@ -1,34 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+			integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+			crossorigin="anonymous"
+		/>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Create New Hero</title>
 	</head>
 	<body>
-		<form action="{% url 'superheroes:edit' hero.id %}" method="post">
-			{% csrf_token %} Hero Name:
-			<input required type="text" name="name" id="name" value="{{hero.name}}"/><br />
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<ul class="nav navbar-nav">
+					<li>
+						<a class="navbar-left" href="{% url 'superheroes:index' %}">
+							SUPERHERO INDEX
+						</a>
+					</li>
+					<li class="active">
+						<a href="{% url 'superheroes:create' %}">EDIT HERO</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<div class="container">
+			<form
+				action="{% url 'superheroes:edit' hero.id %}"
+				method="post"
+				enctype="multipart/form-data"
+			>
+				{% csrf_token %}
+				<div class="form-group">
+					<label for="name">Hero Name</label>
+					<input
+						class="form-control"
+						required
+						type="text"
+						name="name"
+						id="name"
+						value="{{hero.name}}"
+					/>
+				</div>
 
-			Alter Ego: <input required type="text" name="alter_ego" id="alter_ego" value="{{hero.alter_ego}}"/><br />
+				<div class="form-group">
+					<label for="alter_ego">Alter Ego</label>
+					<input
+						class="form-control"
+						required
+						type="text"
+						name="alter_ego"
+						id="alter_ego"
+						value="{{hero.alter_ego}}"
+					/>
+				</div>
+				<div class="form-group">
+					<label>Primary Ability</label>
+					<input
+						class="form-control"
+						required
+						type="text"
+						name="primary_ability"
+						id="primary_ability"
+						value="{{hero.primary_ability}}"
+					/>
+				</div>
+				<div class="form-group">
+					<label>Secondary Ability</label>
+					<input
+						class="form-control"
+						required
+						type="text"
+						name="secondary_ability"
+						id="secondary_ability"
+						value="{{hero.secondary_ability}}"
+					/>
+				</div>
+				<div class="form-group">
+					<label>Catchphrase</label>
+					<input
+						class="form-control"
+						required
+						type="text"
+						name="catchphrase"
+						id="catchphrase"
+						value="{{hero.catchphrase}}"
+					/>
+				</div>
+				<div class="form-group">
+					<label for="image">Current Image</label>
+					<img
+						src="/media/{{hero.image}}"
+						alt=""
+						style="width: 250px; display: block"
+					/>
+				</div>
+				<div class="form-group">
+					<input type="file" name="image" id="image" />
+				</div>
 
-			Primary Ability:
-			<input required  type="text" name="primary_ability" id="primary_ability" value="{{hero.primary_ability}}"/><br />
-
-			Secondary Ability:
-			<input required
-        value="{{hero.secondary_ability}}"
-				type="text"
-				name="secondary_ability"
-				id="secondary_ability"
-			/><br />
-
-			Catchphrase:
-			<input required type="text" name="catchphrase" id="catchphrase" value="{{hero.catchphrase}}" /><br />
-      
-      <input type="submit" value="Save!"></input>
-      <button type="button"><a href="{% url 'superheroes:detail' hero.id %}">Cancel</a></button>
-		</form>
+				<div class="form-group">
+					<button class="btn btn-primary" type="submit">SAVE CHANGES</button>
+					<a
+						class="btn btn-danger"
+						href="{% url 'superheroes:detail' hero.id %}"
+					>
+						CANCEL
+					</a>
+				</div>
+			</form>
+		</div>
 	</body>
 </html>
